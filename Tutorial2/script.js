@@ -63,7 +63,7 @@ myImage.addEventListener('load',function(){
             // Falling speed will be 0 at frist based on bg brightness
             this.speed = 0;
             // Particles will fall on black areas not so monotoneous
-            this.velocity = Math.random() * 0.5;
+            this.velocity = Math.random() * 3;
             // Particle size
             this.size = Math.random() * 1.5 + 1;
             // Coordinate position must be int so we must round it
@@ -75,8 +75,10 @@ myImage.addEventListener('load',function(){
             // Every time we update x and y this values must stay integers
             this.position1 = Math.floor(this.y);
             this.position2 = Math.floor(this.x);
-            // Pulling brightness value [0] based on coordinates (y,x)
-            this.speed = mappedImage[this.position1][this.position2][0];
+            if ((mappedImage[this.position1])&&(mappedImage[this.position1][this.position2])){
+                // Pulling brightness value [0] based on coordinates (y,x)
+                this.speed = mappedImage[this.position1][this.position2][0];
+            }
             // Dark particles that have brightness close to 0 move faster and light brightness close to 2.5(max) move slower we'll flip it
             let movement = (2.5 - this.speed) + this.velocity;
             // Randomizing particles falling
